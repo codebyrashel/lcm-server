@@ -10,19 +10,29 @@ function lcm(a, b) {
 }
 
 function isNatural(n) {
+  if (n === undefined || n === null || n === '') return false;
   const num = Number(n);
-  return Number.isInteger(num) && num >= 1;
+  if (isNaN(num)) return false;
+  if (!Number.isInteger(num)) return false;
+  if (num < 1) return false;
+  return true;
 }
 
 app.get('/codebyrashel_gmail_com', (req, res) => {
   const { x, y } = req.query;
 
   if (!isNatural(x) || !isNatural(y)) {
-    return res.type('text/plain').send('NaN');
+    return res
+      .status(200)
+      .type('text/plain')
+      .send('NaN');
   }
 
   const result = lcm(Number(x), Number(y));
-  res.type('text/plain').send(String(result));
+  res
+    .status(200)
+    .type('text/plain')
+    .send(String(result));
 });
 
 const PORT = process.env.PORT || 3000;
