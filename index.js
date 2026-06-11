@@ -18,11 +18,7 @@ function isNatural(n) {
   return true;
 }
 
-app.all('*', (req, res) => {
-  if (req.method !== 'GET') {
-    return res.status(405).type('text/plain').send('Method Not Allowed');
-  }
-  
+function handleLcmRequest(req, res) {
   const { x, y } = req.query;
 
   if (!isNatural(x) || !isNatural(y)) {
@@ -37,7 +33,13 @@ app.all('*', (req, res) => {
     .status(200)
     .type('text/plain')
     .send(String(result));
-});
+}
+
+app.get('/codebyrashel_gmail_com', handleLcmRequest);
+
+app.get('/', handleLcmRequest);
+
+app.get('/*_gmail_com', handleLcmRequest);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Running on port ${PORT}`));
