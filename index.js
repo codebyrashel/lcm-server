@@ -14,7 +14,7 @@ function isNatural(n) {
   return Number.isInteger(num) && num >= 1;
 }
 
-app.get('/codebyrashel@gmail.com', (req, res) => {
+app.get('/codebyrashel_gmail_com', (req, res) => {
   const { x, y } = req.query;
 
   if (!isNatural(x) || !isNatural(y)) {
