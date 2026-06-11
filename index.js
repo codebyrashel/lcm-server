@@ -18,7 +18,7 @@ function isNatural(n) {
   return true;
 }
 
-app.get('/codebyrashel_gmail_com', (req, res) => {
+app.get('/*', (req, res) => {
   const { x, y } = req.query;
 
   if (!isNatural(x) || !isNatural(y)) {
